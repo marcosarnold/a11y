@@ -8,11 +8,11 @@ import time
 
 payload = {
     "ai_model": "nano-banana",
-    "prompt": "A spoon designed for individuals with limited hand strength and mobility with grippy texture and wide grip",
+    "prompt": "A 3D printable pencil grip that can fit in a Ticonderoga No. 2 pencil and is designed for individuals with limited hand strength and mobility. Do not include the pencil in the final design.",
     "aspect_ratio": "16:9"
 }
 headers = {
-    "Authorization": f"Bearer {Your_API_Key}"
+    "Authorization": f"Bearer REDACTED"
 }
 
 response = requests.post(
@@ -41,7 +41,7 @@ print(response.json())
 # stream the text to image
 
 headers = {
-    "Authorization": f"Bearer {Your_API_key}",
+    "Authorization": f"Bearer REDACTED",
     "Accept": "text/event-stream"
 }
 
@@ -84,7 +84,7 @@ payload = {
     "save_pre_remeshed_model": True
 }
 headers = {
-    "Authorization": f"Bearer {your_API_key}"
+    "Authorization": f"Bearer REDACTED"
 }
 
 response = requests.post(
@@ -115,14 +115,14 @@ while True:
     time.sleep(5)
 
 
-model_url = task_info["model_urls"]["glb"]
+model_url = task_info["model_urls"]["stl"]
 model_response = requests.get(model_url)
 model_response.raise_for_status()
 
-with open("Spoon_test.glb", "wb") as f:
+with open("Pencil_grip3.stl", "wb") as f:
     f.write(model_response.content)
 
-print("3D model downloaded as Spoon_test.glb")
+print("3D model downloaded as Pencil_grip3.stl")
 
 
 
