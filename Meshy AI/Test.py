@@ -1,7 +1,12 @@
+import os
 import json
 import time
 import requests
 import base64
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY = os.environ["MESHY_API_KEY"]
 
 # 1. Convert your local image to Base64
 local_file_path = "/Users/rosekoehler/Desktop/Research/Meshy/SpoonTest.jpg"
@@ -22,7 +27,7 @@ payload = {
 }
 
 headers = {
-    "Authorization": "Bearer REDACTED"
+    "Authorization": f"Bearer {API_KEY}"
 }
 
 # 3. Create a 3D model from the image

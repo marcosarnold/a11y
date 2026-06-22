@@ -1,9 +1,15 @@
+import os
 import requests
 import json
 import time
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY = os.environ["MESHY_API_KEY"]
+HEADERS = {"Authorization": f"Bearer {API_KEY}"}
 
 #
-# TEXT-IMAGE    
+# TEXT-IMAGE
 #
 
 payload = {
@@ -11,9 +17,7 @@ payload = {
     "prompt": "A 3D printable pencil grip that can fit in a Ticonderoga No. 2 pencil and is designed for individuals with limited hand strength and mobility. Do not include the pencil in the final design.",
     "aspect_ratio": "16:9"
 }
-headers = {
-    "Authorization": f"Bearer REDACTED"
-}
+headers = HEADERS
 
 response = requests.post(
     "https://api.meshy.ai/openapi/v1/text-to-image",
@@ -28,7 +32,7 @@ print(response.json())
 task_id = response.json()["result"]
 
 headers = {
-    "Authorization": f"Bearer REDACTED"
+    "Authorization": f"Bearer {API_KEY}"
 }
 
 response = requests.get(
@@ -41,7 +45,7 @@ print(response.json())
 # stream the text to image
 
 headers = {
-    "Authorization": f"Bearer REDACTED",
+    **HEADERS,
     "Accept": "text/event-stream"
 }
 
@@ -84,7 +88,7 @@ payload = {
     "save_pre_remeshed_model": True
 }
 headers = {
-    "Authorization": f"Bearer REDACTED"
+    "Authorization": f"Bearer {API_KEY}"
 }
 
 response = requests.post(

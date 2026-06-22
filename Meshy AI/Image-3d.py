@@ -1,10 +1,13 @@
+import os
 import requests
 import time
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY = os.environ["MESHY_API_KEY"]
 
 # image URL
 image_url = "https://www.makersmakingchange.com/sfsites/c/cms/delivery/media/MCWS2XVC6XFNCOLIQVLGRVMKZH74?version=1.1&channelId=0apJR0000000FNF"
-
-API_KEY = "REDACTED"
 
 headers = {
     "Authorization": f"Bearer {API_KEY}",

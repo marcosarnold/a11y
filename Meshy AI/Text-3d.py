@@ -1,7 +1,10 @@
+import os
 import requests
 import time
+from dotenv import load_dotenv
 
-API_KEY = "REDACTED"
+load_dotenv()
+API_KEY = os.environ["MESHY_API_KEY"]
 
 headers = {
     "Authorization": f"Bearer {API_KEY}",
